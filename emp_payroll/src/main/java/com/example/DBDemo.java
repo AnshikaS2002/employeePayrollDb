@@ -6,16 +6,12 @@ import java.sql.SQLException;
 
 public class DBDemo {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/payroll_service";
-        String user = "root";
-        String password = "Ganesh1*%9";
-        Connection connection;
 
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Connection successfull!!" + connection);
-        } catch (SQLException s) {
-            System.out.println("sql exception");
-        }
+        Queries queries = new Queries();
+        // queries.createTable();
+        // queries.createEmployee(new Employee(1, "Smith", 100000, "male"));
+        // queries.createEmployee(new Employee(2, "John", 200000, "male"));
+        // queries.createEmployee(new Employee(3, "Alice", 300000, "female"));
+        queries.readEmployee();
     }
 }
