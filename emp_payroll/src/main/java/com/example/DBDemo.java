@@ -12,6 +12,8 @@ public class DBDemo {
         // queries.createEmployee(new Employee(1, "Smith", 100000, "male"));
         // queries.createEmployee(new Employee(2, "John", 200000, "male"));
         // queries.createEmployee(new Employee(3, "Alice", 300000, "female"));
+        // queries.createEmployee(new Employee(4, "Teresa", 250000, "female"));
+        queries.updateSalary(4, 300000);
         queries.readEmployee();
     }
 }

@@ -47,6 +47,23 @@ public class Queries {
         }
     }
 
+    public void updateSalary(int id, int salary) {
+        String sqlQuery = "update employees set salary=? where id=?";
+        try (Connection connection = getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+            preparedStatement.setInt(1, salary);
+            preparedStatement.setInt(2, id);
+            int rowCount = preparedStatement.executeUpdate();
+            if (rowCount > 0) {
+                System.out.println("Salary updated for Employee ID : " + id);
+            } else {
+                System.out.println("Unable to update Salary for Employee ID : " + id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void readEmployee() {
         List<Employee> employeeList = new ArrayList<>();
         String sqlQuery = "select * from employees";
