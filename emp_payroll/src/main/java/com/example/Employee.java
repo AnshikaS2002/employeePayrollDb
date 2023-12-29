@@ -5,12 +5,14 @@ public class Employee {
     private String name;
     private int salary;
     private String gender;
+    private String joining_date;
 
-    public Employee(int id, String name, int salary, String gender) {
+    public Employee(int id, String name, int salary, String gender, String joining_date) {
         this.id = id;
         this.name = name;
         this.salary = salary;
         this.gender = gender;
+        this.joining_date = joining_date;
     }
 
     @Override
@@ -20,7 +22,16 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", age=" + salary +
                 ", gender='" + gender + '\'' +
+                ", joining_date='" + joining_date + '\'' +
                 '}';
+    }
+
+    public String getJoining_date() {
+        return joining_date;
+    }
+
+    public void setJoining_date(String joining_date) {
+        this.joining_date = joining_date;
     }
 
     public int getId() {
