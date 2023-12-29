@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.sql.Date;
+import java.util.List;
 
 import com.mysql.cj.xdevapi.PreparableStatement;
 
@@ -138,4 +140,38 @@ public class Queries {
         }
         return employeeList;
     }
+
+    public List<Employee> getEmployeesbyJoiningDate(Date startDate, Date endDate) {
+        List<Employee> employeeList = new ArrayList<>();
+        String sqlQuery = "SELECT * FROM employees WHERE joining_date BETWEEN ? AND ?";
+
+        try {
+            if (!preparedStatements.containsKey(sqlQuery)) {
+                Connection connection = getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+                preparedStatements.put(sqlQuery, preparedStatement);
+            }
+
+            PreparedStatement preparedStatement = preparedStatements.get(sqlQuery);
+            preparedStatement.setDate(1, startDate);
+            preparedStatement.setDate(2, endDate);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    int salary = resultSet.getInt("salary");
+                    String gender = resultSet.getString("gender");
+                    String jd = resultSet.getString("joining_date");
+                    Employee e = new Employee(id, name, salary, gender, jd);
+                    employeeList.add(e);
+                }
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return employeeList;
+    }
+
 }

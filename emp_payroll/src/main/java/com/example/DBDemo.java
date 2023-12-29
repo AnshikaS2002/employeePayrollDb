@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
+import java.sql.Date;
 
 public class DBDemo {
     public static void main(String[] args) {
@@ -18,11 +19,19 @@ public class DBDemo {
         // "2020-11-20"));
         // queries.createEmployee(new Employee(4, "Teresa", 250000, "female",
         // "2019-04-10"));
-        queries.createEmployee(new Employee(5, "Smith", 450000, "male",
-                "2018-04-11"));
+        // queries.createEmployee(new Employee(5, "Smith", 450000, "male",
+        // "2018-04-11"));
         // queries.updateSalary(4, 300000);
         // queries.readEmployee();
-        List<Employee> emp = queries.getEmployeeByName("Smith");
-        System.out.println(emp.toString());
+        // List<Employee> emp = queries.getEmployeeByName("Smith");
+        // System.out.println(emp.toString());
+
+        Date startDate = Date.valueOf("2019-01-01");
+        Date endDate = Date.valueOf("2022-12-31");
+        List<Employee> empInDateRange = queries.getEmployeesbyJoiningDate(startDate, endDate);
+
+        for (Employee employee : empInDateRange) {
+            System.out.println(employee);
+        }
     }
 }
