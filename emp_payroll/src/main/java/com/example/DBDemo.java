@@ -26,12 +26,16 @@ public class DBDemo {
         // List<Employee> emp = queries.getEmployeeByName("Smith");
         // System.out.println(emp.toString());
 
-        Date startDate = Date.valueOf("2019-01-01");
-        Date endDate = Date.valueOf("2022-12-31");
-        List<Employee> empInDateRange = queries.getEmployeesbyJoiningDate(startDate, endDate);
+        // Date startDate = Date.valueOf("2019-01-01");
+        // Date endDate = Date.valueOf("2022-12-31");
+        // List<Employee> empInDateRange = queries.getEmployeesbyJoiningDate(startDate,
+        // endDate);
 
-        for (Employee employee : empInDateRange) {
-            System.out.println(employee);
-        }
+        // for (Employee employee : empInDateRange) {
+        // System.out.println(employee);
+        // }
+
+        queries.getGenderStatistics();
+
     }
 }

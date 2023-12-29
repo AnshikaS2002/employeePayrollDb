@@ -174,4 +174,35 @@ public class Queries {
         return employeeList;
     }
 
+    public void getGenderStatistics() {
+        String sqlQuery = "SELECT gender, COUNT(*) AS count,"
+                + "SUM(salary) AS totalSalary, AVG(salary) AS avgSalary,"
+                + "MIN(salary) AS minSalary, MAX(salary) AS maxSalary "
+                + "FROM employees GROUP BY gender";
+
+        try (Connection connection = getConnection();
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sqlQuery)) {
+
+            while (resultSet.next()) {
+                String gender = resultSet.getString("gender");
+                int count = resultSet.getInt("count");
+                int totalSalary = resultSet.getInt("totalSalary");
+                double avgSalary = resultSet.getDouble("avgSalary");
+                int minSalary = resultSet.getInt("minSalary");
+                int maxSalary = resultSet.getInt("maxSalary");
+
+                System.out.println("Gender: " + gender);
+                System.out.println("Number of Employees: " + count);
+                System.out.println("Total Salary: " + totalSalary);
+                System.out.println("Average Salary: " + avgSalary);
+                System.out.println("Min Salary: " + minSalary);
+                System.out.println("Max Salary: " + maxSalary);
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
 }
